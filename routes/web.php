@@ -16,4 +16,3 @@ Route::view('/auth-register', 'auth.register');
 
 Route::post('login', [AuthenticationController::class, 'login'])->name('auth.login');
 Route::get('login', [DashboardController::class, 'index'])->name('dashboard.index');
-});
