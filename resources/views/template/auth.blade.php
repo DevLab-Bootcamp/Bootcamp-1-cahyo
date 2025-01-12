@@ -13,7 +13,6 @@
 <body>
     <h1 class="text-2xl font-bold">@yield('title')</h1>
     @yield('form')
-
 </body>
-
+    
 </html>
