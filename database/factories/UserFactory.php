@@ -2,43 +2,32 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
+    // Tentukan nama model yang digunakan oleh factory ini
+    protected $model = User::class;
 
     /**
-     * Define the model's default state.
+     * Definisikan data dummy untuk model User.
      *
-     * @return array<string, mixed>
+     * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'id' => $this->faker->uuid, // Menggunakan UUID untuk kolom 'id'
+            'name' => $this->faker->name,
+            'username' => $this->faker->unique()->userName,
+            'password' => bcrypt('password'), // Contoh password terenkripsi
+            'faculty' => $this->faker->word,
+            'prodi' => $this->faker->word,
+            'medical_record' => $this->faker->word,
+            'role' => 'PATIENT', // Nilai default untuk 'role'
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
-    }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
     }
 }

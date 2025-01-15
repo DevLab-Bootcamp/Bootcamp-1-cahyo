@@ -1,13 +1,12 @@
 <?php
 
-use App\Http\Controllers\AuthenticationController;
-use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthenticationController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('login', [AuthenticationController::class, 'index'])->name('login');
+Route::resource('users', UserController::class);
 
-Route::post('login',[AuthenticationController::class,'loginProcess'])->name('auth.login-process');
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+// Route::post('login', [AuthenticationController::class, 'login']);
+// Route::post('logout', [AuthenticationController::class, 'logout'])->name('logout');

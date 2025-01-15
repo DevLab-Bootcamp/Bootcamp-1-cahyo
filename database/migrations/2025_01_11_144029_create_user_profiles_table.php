@@ -11,18 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_profiles', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('user_id')->primary();
-            $table->enum('gender', ['Male', 'Female']);
-            $table->text('addres')->nullable();
-            $table->date('birth')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('religion');
-            $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-        });
+        if (!Schema::hasTable('user_profiles')) {
+            Schema::create('user_profiles', function (Blueprint $table) {
+                $table->uuid('id')->primary();
+                $table->uuid('user_id'); // Gunakan uuid, sama dengan tipe data di tabel users
+                $table->enum('gender', ['Male', 'Female']);
+                $table->text('addres')->nullable();
+                $table->date('birth')->nullable();
+                $table->string('phone')->nullable();
+                $table->string('religion');
+                $table->timestamps();
+            
+                // Menambahkan constraint foreign key dengan tipe uuid
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            }); 
+            
+        }
+        
     }
 
     /**
