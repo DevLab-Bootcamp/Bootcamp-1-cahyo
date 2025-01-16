@@ -9,7 +9,10 @@ use App\Http\Controllers\ObatController;
 
 Route::resource('users', UserController::class);
 Route::resource('clinics', ClinicController::class);
-Route::resource('obat', ObatController::class);
+Route::resource('obat', ObatController::class)->parameters([
+    'obat' => 'drugs',
+]);
+
 Route::view('/', 'dashboard');
 Route::view('/auth', 'template.auth');
 Route::view('/main', 'template.main');
