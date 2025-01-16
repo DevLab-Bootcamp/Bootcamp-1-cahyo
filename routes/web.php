@@ -4,7 +4,6 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\ObatController;
 
