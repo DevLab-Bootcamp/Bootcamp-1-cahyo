@@ -18,11 +18,15 @@ class UserProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' =>User::factory(),
-            'gender' =>fake()->randomElement(['MALE', 'FEMALE']),
-            'addres'=>fake()->address(),
-            'phone'=>fake()->phoneNumber(),
-            'religion'=>'ISLAM'
+
+            'user_id' => User::factory(),
+            'gender' => fake()->randomElement([
+                'male',
+                'female'
+            ]),
+            'address' => fake()->address(),
+            'phone' => fake()->phoneNumber(),
+            'religion' => 'Islamic'
         ];
     }
 }

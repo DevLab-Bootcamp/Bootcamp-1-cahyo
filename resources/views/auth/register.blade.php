@@ -1,24 +1,17 @@
 @extends('template.auth')
-@section('title', 'LOGIN')
+@section('title', 'Register')
 @section('form')
-<form class="mx-auto max-w-sm" action="{{route('auth.login')}}" method="POST">
-    @csrf
-
-    @if(@session('error'))
-        <div class="text-red-600">
-            {{session('error')}}
-        </div>
-    @endif
+<form class="mx-auto max-w-sm">
     <div class="mb-5">
         <label for="email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-        <input type="email" name="email" id="email"
+        <input type="email" id="email"
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder="name@flowbite.com" required />
     </div>
     <div class="mb-5">
         <label for="password" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Your
             password</label>
-        <input type="password" name="password" id="password"
+        <input type="password" id="password"
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             required />
     </div>
