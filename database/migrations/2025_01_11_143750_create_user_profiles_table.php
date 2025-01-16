@@ -20,8 +20,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('religion')->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('user_id')->references('devlab_id')->on('users')->cascadeOnDelete();
         });
     }
 

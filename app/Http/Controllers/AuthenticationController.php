@@ -17,8 +17,9 @@ class AuthenticationController extends Controller
 
     if (!$auth) {
         return back()->with('error', 'Login gagal');
-    }
+    }   
 
     return redirect()->route('dashboard.index')->with('success', 'Login Berhasil');
    }
+
 }

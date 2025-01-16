@@ -18,6 +18,7 @@ class UserProfileFactory extends Factory
     public function definition(): array
     {
         return [
+
             'user_id' => User::factory(),
             'gender' => fake()->randomElement([
                 'male',
