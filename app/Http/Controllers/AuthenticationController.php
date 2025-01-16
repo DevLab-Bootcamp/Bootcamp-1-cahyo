@@ -21,4 +21,5 @@ class AuthenticationController extends Controller
 
     return redirect()->route('dashboard.index')->with('success', 'Login Berhasil');
    }
+
 }
