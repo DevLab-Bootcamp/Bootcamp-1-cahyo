@@ -6,12 +6,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\ObatController;
+use App\Http\Controllers\IdcController;
+
 
 Route::resource('users', UserController::class);
 Route::resource('clinics', ClinicController::class);
 Route::resource('obat', ObatController::class)->parameters([
     'obat' => 'drugs',
 ]);
+Route::resource('idc', IdcController::class);
 
 Route::view('/', 'dashboard');
 Route::view('/auth', 'template.auth');
