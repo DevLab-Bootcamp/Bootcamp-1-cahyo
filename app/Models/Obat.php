@@ -10,5 +10,5 @@ class Obat extends Model
     use HasFactory;
     protected $table = 'drugs'; 
 
-    protected $fillable = ['kode_drug', 'nama_drug', 'deskripsi_drug'];
+    protected $fillable = ['code', 'name', 'description'];
 }

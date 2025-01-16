@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Obat;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ObatController extends Controller
 {
     public function index()
@@ -22,15 +24,25 @@ class ObatController extends Controller
     public function store(Request $request)
     {
         // Validasi sesuai dengan nama kolom dan tabel 'drugs'
-        $request->validate([
-            'kode_drug' => 'required|string|unique:drugs,kode_drug|max:10',
-            'nama_drug' => 'required|string|max:255',
-            'deskripsi_drug' => 'nullable|string',
-        ]);
-
-        // Menyimpan data ke tabel 'drugs'
-        Obat::create($request->all());
+        try {
+            $validatedData = $request->validate([
+                'code' => 'required|string|unique:drugs,code|max:10',
+                'name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+            ]);
+        } catch (\Throwable $th) {
+            dd($th->getMessage()); // Menampilkan pesan error validasi
+        }
+        
+        if (empty($validatedData)) {
+            dd("Data Kosong");
+        } else {
+            Obat::create($validatedData); // Menyimpan hanya data yang divalidasi
+        }
+        
+        // Mengarahkan pengguna ke halaman indeks
         return redirect()->route('obat.index')->with('success', 'Obat berhasil ditambahkan.');
+        
     }
 
     public function show(Obat $drugs)
@@ -47,15 +59,15 @@ class ObatController extends Controller
     {
         // Validasi untuk update, pastikan kode_drug sesuai dengan record yang ada
         $request->validate([
-            'kode_drug' => 'required|string|max:10|unique:drugs,kode_drug,' . $drugs->id,
-            'nama_drug' => 'required|string|max:255',
-            'deskripsi_drug' => 'nullable|string',
+            'code' => 'required|string|max:10|unique:drugs,code,' . $drugs->id,
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
         ]);
 
         $drugs->update([
-            'kode_drug' => $request->kode_drug,
-            'nama_drug' => $request->nama_drug,
-            'deskripsi_drug' => $request->deskripsi_drug,
+            'code' => $request->code,
+            'name' => $request->name,
+            'description' => $request->description,
         ]);
 
         return redirect()->route('obat.index')->with('success', 'Obat berhasil diperbarui.');
