@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->uuid('devlab_id')->nullable();
             $table->string('devlab_role')->nullable();
             $table->string('name');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('faculty');
             $table->string('prodi')->nullable();
             $table->string('medical_record');
-            $table->string('role')->default('PATIENT');
+            $table->enum('gender', ['PATIENT', 'ADMIN', 'DOCTOR'])->default('PATIENT');
             $table->timestamps();
         });
 

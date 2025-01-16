@@ -13,33 +13,33 @@ class AuthenticationController extends Controller
         return view('auth.login'); 
     }
 
-    // public function login(Request $request)
-    // {
-    //     $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //     ]);
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-    //     // Menggunakan Auth untuk login
-    //     if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-    //         // Cek role setelah login
-    //         $user = Auth::user();
+        // Menggunakan Auth untuk login
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+            // Cek role setelah login
+            $user = Auth::user();
 
-    //         if ($user->role == 'PATIENT') {
-    //             return redirect()->route('patient.dashboard'); // redirect ke halaman pasien
-    //         } elseif ($user->role == 'DOCTOR') {
-    //             return redirect()->route('doctor.dashboard'); // redirect ke halaman dokter
-    //         }
-    //     }
+            if ($user->role == 'PATIENT') {
+                return redirect()->route('patient.dashboard'); // redirect ke halaman pasien
+            } elseif ($user->role == 'DOCTOR') {
+                return redirect()->route('doctor.dashboard'); // redirect ke halaman dokter
+            }
+        }
 
-    //     return back()->withErrors([
-    //         'email' => 'Email atau password salah.',
-    //     ]);
-    // }
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ]);
+    }
 
-    // public function logout()
-    // {
-    //     Auth::logout();
-    //     return redirect('/login');
-    // }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
 }

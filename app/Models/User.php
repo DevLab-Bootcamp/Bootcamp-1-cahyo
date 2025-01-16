@@ -19,15 +19,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function isDoctor()
-    {
-        return $this->role === 'DOCTOR';
-    }
-
-    
-    public function isPatient()
-    {
-        return $this->role === 'PATIENT';
-    }
 }
