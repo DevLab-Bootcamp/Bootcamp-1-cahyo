@@ -11,3 +11,4 @@ class DashboardController extends Controller
         dd(Auth::user());
     }
 }
+
