@@ -21,4 +21,10 @@ class AuthenticationController extends Controller
 
     return redirect()->route('dashboard.index')->with('success', 'Login Berhasil');
    }
+
+   public function create()
+    {
+        return view('admin.createICD'); // Arahkan ke form input
+    }
+    
 }
